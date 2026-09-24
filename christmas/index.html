@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Christmasss</title>
+        <style>
+            *{
+                margin:0px;
+                padding: 0px;
+            }
+            body{
+                min-height: 100vh;
+                min-width: 100vw;
+                background: linear-gradient(to bottom, #061722,#020b12,#000000);
+            }
+            @keyframes fallingflakes{
+                to {
+                    transform: translateY(100vh);
+                    opacity: 0;
+                }
+            }
+            .fallingsnowflakes{
+                color:#fffafa;
+                animation: fallingflakes  ease-in-out; 
+                pointer-events: auto;
+                opacity: 0.8;
+                
+            }
+             @keyframes snowDrift{
+                to {
+                    transform: translate(-120px,100vh);
+                    opacity: 0;
+                }
+            }
+            .snowrain{
+                border: 3px;
+                border-radius: 100%;
+                min-width: 5px;
+                min-height: 5px;
+                background-color: #fffafa;
+                position: absolute;
+                animation: snowDrift 10s ease-in-out;
+                opacity: 0.7;
+               
+            }
+          
+
+            
+        </style>
+    </head>
+    <body>
+        <script>
+            function snowflakes () {
+                 const snowflake = document.createElement('div');
+                 snowflake.textContent = "❄️";
+                 snowflake.style.position = "absolute";
+                 snowflake.style.left = Math.random() *window.innerWidth +"px";
+                 snowflake.style.top = "-20px";
+                 snowflake.classList.add("fallingsnowflakes");
+                 let rand = Math.floor(Math.random()*15);
+                 let size; 
+                 let duration
+                 if(rand < 4) {
+                    size = Math.random() * 5+10;
+                    duration = Math.random()* 10+18;
+                    
+                 }
+                 else if (rand > 4 && rand <9) {
+                     size = Math.random() * 10+15;
+                     duration = Math.random() * 6+7;
+                 }
+                 else if (rand > 9 && rand <15) {
+                     size = Math.random() * 20+20;
+                     duration = Math.random() * 4+5;
+                 }
+                 snowflake.style.fontSize = size+"px";
+                 snowflake.style.webkitAnimationDuration = duration+"s"
+                 snowflake.addEventListener("mouseover",(event) => {
+                    const x = event.clientX;
+                    const y = event.clientY;
+                    const snowCount = Math.floor(size/2);
+                    for (let i = 0 ; i<snowCount;i++) {
+                        let snowdust = document.createElement("div");
+                        snowdust.classList.add("snowrain");
+                        snowdust.style.left = (x + Math.random() * size- size/2) +"px"
+                        snowdust.style.top = (y + Math.random() * size-size/2) +"px"
+                        const duration = Math.random() * 2 + 3 ;
+                        snowdust.style.webkitAnimationDuration = duration+"s";
+                        document.body.appendChild(snowdust);
+                        snowdust.addEventListener("animationend", () => snowdust.remove());
+                    }
+                    snowflake.remove();
+                 });
+                 document.body.appendChild(snowflake);
+                 snowflake.addEventListener("animationend", () => snowflake.remove());
+            }
+            function snowfall() {
+                for (let i =0 ;i<8 ;i++){
+                let snowdust = document.createElement("div");
+                snowdust.style.left = Math.random() * window.innerWidth +"px";
+                snowdust.style.top="-20px";
+                snowdust.classList.add("snowrain");
+                document.body.appendChild(snowdust);
+                snowdust.addEventListener("animationed", () => snowdust.remove());
+                }
+            }
+             setInterval(snowflakes,120);
+             setInterval(snowfall,80);
+        </script>
+    </body>
+</html>
