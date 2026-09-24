@@ -60,5 +60,6 @@ This project was primarily built to practice the JavaScript concepts I had recen
 * Responding to user interaction
 
 ### JavaScript + CSS
-#Live Demo : https://jss-5c17cb.netlify.app/
+###Live Demo : https://jss-5c17cb.netlify.app/
+<br>
 Made by Soujan Kumar
